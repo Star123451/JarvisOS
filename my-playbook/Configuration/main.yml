@@ -1,0 +1,6 @@
+title: Meowth
+actions:
+  - !writeStatus: {status: 'Whisker-tuning registry'}
+  - !task: {path: 'Tasks/registry.yml'}
+  - !writeStatus: {status: 'Paw-ing APPX packages away'}
+  - !task: {path: 'Tasks/appx.yml'}

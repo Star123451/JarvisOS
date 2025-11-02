@@ -1,0 +1,8 @@
+- name: Restart APPX service
+  service:
+    name: appx-service
+    state: restarted
+
+- name: Notify about APPX changes
+  debug:
+    msg: "APPX packages have been modified."

@@ -1,0 +1,19 @@
+- name: Manage APPX packages
+  hosts: all
+  tasks:
+    - name: Remove specific APPX packages
+      win_package:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - "Microsoft.BingNews"
+        - "Microsoft.MicrosoftSolitaireCollection"
+        - "Microsoft.XboxGameCallableUI"
+
+    - name: Clear APPX package caches
+      win_command: "powershell -Command \"Get-AppxPackage | Remove-AppxPackage\""
+      register: appx_cleanup
+
+    - name: Display cleanup status
+      debug:
+        msg: "APPX package cleanup completed with status: {{ appx_cleanup.rc }}"

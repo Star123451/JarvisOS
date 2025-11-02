@@ -1,0 +1,20 @@
+actions:
+  - name: Remove specific APPX packages
+    win_package:
+      name: "{{ item }}"
+      state: absent
+    loop:
+      - "Microsoft.BingWeather"
+      - "Microsoft.GetHelp"
+      - "Microsoft.MicrosoftSolitaireCollection"
+
+  - name: Clear APPX package caches
+    win_shell: |
+      Get-AppxPackage -AllUsers | Where-Object { $_.Name -like "*Microsoft.*" } | Remove-AppxPackage
+      Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -like "*Microsoft.*" } | Remove-AppxProvisionedPackage -Online
+    register: appx_cache_clear
+
+  - name: Display cache clear status
+    debug:
+      msg: "APPX package caches cleared successfully." 
+    when: appx_cache_clear is succeeded

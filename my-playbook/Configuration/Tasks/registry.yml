@@ -1,0 +1,14 @@
+title: Catgirl Registry Tweaks
+actions:
+  - !writeStatus: {status: 'Whisking the registry into shape'}
+  - !registryValue:
+      path: 'HKLM\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting'
+      value: 'Disabled'
+      type: REG_DWORD
+      data: '1'
+  - !registryValue:
+      path: 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced'
+      value: 'ShowTaskViewButton'
+      type: REG_DWORD
+      data: '0'
+  - !writeStatus: {status: 'Registry purr-done!'}

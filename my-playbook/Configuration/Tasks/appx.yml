@@ -1,0 +1,10 @@
+title: Catgirl APPX Cleanup
+actions:
+  - !writeStatus: {status: 'Purging unwanted APPX goodies'}
+  - !appx: {name: '*disney*', type: family}
+  - !appx: {name: '*PowerAutomate*', type: family}
+  - !appx: {name: '*MicrosoftTeams*', type: family}
+  - !appx: {name: '*Client.CBS*', operation: clearCache}
+  - !appx: {name: '*StartMenuExperienceHost*', operation: clearCache}
+  - !appx: {name: '*Windows.Search*', operation: clearCache}
+  - !writeStatus: {status: 'All done, paws up!'}

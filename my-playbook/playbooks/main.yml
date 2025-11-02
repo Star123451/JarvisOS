@@ -1,0 +1,13 @@
+- name: Main Playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Include registry modifications
+      include_tasks: ../inventories/registry.yml
+
+    - name: Include APPX package management
+      include_tasks: ../playbooks/appx.yml
+
+    - name: Display status message
+      debug:
+        msg: "Playbook execution completed."
